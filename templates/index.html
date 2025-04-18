@@ -9,63 +9,104 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #f7f7f7;
-            color: #333;
+            background-image: url('https://cdn.prod.website-files.com/64dd05b33f019f79a7ec8f43/66aaa0e993b2326603bcde44_academia-24-horas.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            
+            color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            position: relative;
         }
+
+        /* Overlay escurecido sobre a imagem */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* preto com transparência */
+            z-index: 0;
+        }
+
+        .navbar, .container, .footer {
+            position: relative;
+            z-index: 1; /* Coloca acima da overlay */
+        }
+
         .navbar {
-            background-color: #343a40;
+            background-color: rgba(52, 58, 64, 0.9);
         }
+
         .navbar-brand {
             color: #fff !important;
         }
+
         .container {
             max-width: 800px;
             margin-top: 50px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
         }
+
         .card {
             margin-bottom: 20px;
             border-radius: 10px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
         }
+
         .card-header {
             background-color: #28a745;
             color: white;
             font-weight: bold;
         }
+
         .card-body {
-            background-color: #ffffff;
+            background-color: #333;
             padding: 20px;
         }
+
         .btn-primary {
             background-color: #28a745;
             border: none;
         }
+
         .btn-primary:hover {
             background-color: #218838;
         }
+
         .form-control {
             border-radius: 5px;
             border: 2px solid #ddd;
         }
+
         .alert {
             margin-top: 20px;
         }
+
         .footer {
             text-align: center;
             margin-top: 50px;
             padding: 10px;
-            background-color: #343a40;
+            background-color: rgba(52, 58, 64, 0.9);
             color: white;
         }
     </style>
 </head>
 <body>
+    <!-- Overlay escura sobre a imagem de fundo -->
+    <div class="overlay"></div>
+
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="#">Busca Academias</a>
+        <a class="navbar-brand" href="#">Radar Fit</a>
     </nav>
 
     <div class="container">
-        <h1 class="text-center mb-4">Encontre Academias Próximas de Você</h1>
+        <h1 class="text-center mb-4">Seu treino começa aqui: ache a academia ideal perto de você!</h1>
         
         <!-- Formulário de busca -->
         <form method="POST">
@@ -108,4 +149,5 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src
+</body>
+</html>
