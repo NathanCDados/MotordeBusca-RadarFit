@@ -36,3 +36,5 @@ buscador-academias/
 ├── requirements.txt # Dependências
 ├── README.md # Documentação do projeto
 └── .gitignore # Arquivos ignorados
+
+
