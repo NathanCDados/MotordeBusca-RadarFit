@@ -5,8 +5,19 @@ from geopy.geocoders import Nominatim
 app = Flask(__name__)
 
 def geocode_location(place_name):
+    # Remover hífen, se for um CEP
+    place_name = place_name.replace("-", "")
+
     geolocaliza = Nominatim(user_agent="teste-code")
-    return geolocaliza.geocode(place_name)
+    location = geolocaliza.geocode(place_name)
+    
+    # Se não encontrou, tenta novamente com o nome do lugar ou outra busca
+    if not location and len(place_name) == 8 and place_name.isdigit():
+        # Caso seja um CEP numérico com 8 caracteres, tentamos usar esse formato direto
+        place_name = place_name[:5] + '-' + place_name[5:]
+        location = geolocaliza.geocode(place_name)
+        
+    return location
 
 def get_wellhub_data(location, place_name, token):
     headers = {
@@ -17,6 +28,8 @@ def get_wellhub_data(location, place_name, token):
         'origin': 'https://wellhub.com',
         'referer': 'https://wellhub.com/', 
     }
+    
+    # Primeiro, tentamos buscar academias pelo local exato
     params = {
         'lat': location.latitude,
         'lon': location.longitude,
@@ -24,7 +37,23 @@ def get_wellhub_data(location, place_name, token):
         'query': place_name,
     }
     response = requests.get('https://mep-partner-bff.wellhub.com/v2/search', params=params, headers=headers)
-    return response.json()  # Retorna os dados da resposta já convertidos para JSON
+    data = response.json()
+    
+    # Caso não encontre resultados, buscamos academias no bairro
+    if not data or isinstance(data, list) and not data:
+        # Tentamos buscar pelo bairro (extraímos o bairro da localização)
+        neighborhood = None
+        for component in location.raw['address'].get('suburb', '').split(','):
+            if component.strip():
+                neighborhood = component.strip()
+                break
+        
+        if neighborhood:
+            params['query'] = neighborhood  # Alteramos a busca para o bairro
+            response = requests.get('https://mep-partner-bff.wellhub.com/v2/search', params=params, headers=headers)
+            data = response.json()
+
+    return data
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
