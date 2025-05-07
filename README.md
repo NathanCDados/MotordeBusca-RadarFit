@@ -1,27 +1,34 @@
-# 🏋️ Buscador de Academias do Brasil
+# 🏋️‍♂️ RadarFit - Wellhub + Flask
 
-Projeto de motor de busca que coleta, organiza e disponibiliza informações sobre academias de todo o Brasil. A ferramenta utiliza **web scraping** para integrar dados do site da **Wellhub**, 
-permitindo buscas inteligentes e atualizadas.
+Este projeto é um motor de busca de academias que utiliza **web scraping da Wellhub**, integração com **geolocalização via Geopy** e uma interface web simples feita com **Flask**. Basta digitar o nome de uma cidade ou local, e o sistema retorna academias próximas com base nos dados reais da Wellhub.
 
 ---
 
 ## 🚀 Funcionalidades
 
-- Extração automática de academias da Wellhub
-- Filtragem por cidade, estado e nome
-- Estrutura modular para futura integração com outras fontes
-- Fácil de adaptar e escalar
+- Interface web simples para busca
+- Geolocalização com `Nominatim`
+- Requisições à API da Wellhub
+- Visualização dos resultados diretamente no navegador
+
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
 - Python 3.11
-- `requests`
-- `BeautifulSoup`
-- `pandas`
-- (opcional: Flask ou FastAPI, caso tenha front-end ou API)
+- Flask
+- requests
+- geopy
 
 ---
 
-## 📁 Estrutura do Projeto
+## 🗂️ Estrutura do Projeto
+
+buscador-academias/
+├── templates/
+│ └── index.html # Interface HTML
+├── app.py # Código principal
+├── requirements.txt # Dependências
+├── README.md # Documentação do projeto
+└── .gitignore # Arquivos ignorados
