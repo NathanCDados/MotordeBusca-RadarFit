@@ -1,5 +1,8 @@
 ## RadarFit - Wellhub + Flask
 
+![logoradarfit (1)](https://github.com/user-attachments/assets/79e17ce1-0af6-4c86-a767-7f02885ef198)
+
+
 Este projeto é um motor de busca de academias que utiliza **web scraping da Wellhub**, integração com **geolocalização via Geopy** e uma interface web simples feita com **Flask**. Basta digitar o nome de uma cidade ou local, e o sistema retorna academias próximas com base nos dados reais da Wellhub.
 
 ---
